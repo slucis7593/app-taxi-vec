@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">AppTaxi</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="tim_kiem_cung_cap_xe_tai">Tìm kiếm\nCung Cấp Xe Tải</string>
+    <string name="ten_dang_nhap_hint">Tên Đăng Nhập</string>
+    <!--<string name="mat_khau_hint">Password</string>-->
+    <string name="mat_khau_hint">Mật khẩu</string>
+    <string name="dang_nhap">Đăng Nhập</string>
+    <string name="hoac">hoặc</string>
+    <string name="khong_co_tai_khoan">Không có tài khoản?</string>
+    <string name="dang_ky">ĐĂNG KÝ</string>
+</resources>
