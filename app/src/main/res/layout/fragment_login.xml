@@ -108,7 +108,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/sign_in_button_selector"
+                    android:background="@drawable/button_rectangle_backgroud"
                     android:text="@string/dang_nhap"
                     android:textColor="#000000"
                     android:textSize="30sp"
@@ -133,6 +133,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
+                        android:textSize="15sp"
                         android:text="@string/hoac"/>
 
                     <ImageView
@@ -149,7 +150,7 @@
                     android:layout_height="100dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="70dp"
-                    android:background="@drawable/facebook_button_selector"
+                    android:background="@drawable/button_circle_background"
                     android:src="@drawable/img_facebook"/>
 
             </LinearLayout>
@@ -166,7 +167,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="32dp"
+            android:layout_height="48dp"
             android:layout_alignParentBottom="true"
             android:background="#000000"
             android:gravity="center"
@@ -178,7 +179,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/khong_co_tai_khoan"
                 android:textColor="#ffffff"
-                android:textSize="16sp"/>
+                android:textSize="20sp"/>
 
             <TextView
                 android:id="@+id/tvSignUp_login"
@@ -187,8 +188,9 @@
                 android:layout_marginLeft="6dp"
                 android:layout_marginStart="6dp"
                 android:text="@string/dang_ky"
+                android:textAllCaps="true"
                 android:textColor="#B4EC33"
-                android:textSize="16sp"
+                android:textSize="20sp"
                 android:textStyle="bold"/>
         </LinearLayout>
 
