@@ -10,4 +10,5 @@ public class RegisterActivity extends CalligraphyFragmentActivity {
     protected Fragment createFragment() {
         return new RegisterFragment();
     }
+
 }

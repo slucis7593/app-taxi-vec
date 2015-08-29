@@ -2,14 +2,20 @@
 
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#B4EC33"
     android:fillViewport="true">
 
     <RelativeLayout
+        android:id="@+id/mainLayout_login"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        tools:ignore="MissingPrefix">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -20,81 +26,67 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/tvTitleLogin_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                fontPath="fonts/VL_Ample-Bold.otf"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:drawablePadding="18dp"
+                android:drawableTop="@drawable/img_truck"
+                android:gravity="center"
+                android:text="@string/tim_kiem_cung_cap_xe_tai"
+                android:textColor="#000000"
+                android:textSize="30sp"
+                />
+
+            <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:stretchColumns="1">
 
-                <ImageView
-                    android:layout_width="144dp"
-                    android:layout_height="83.5dp"
-                    android:src="@drawable/img_truck"/>
+                <TableRow
+                    android:layout_marginBottom="6dp"
+                    android:gravity="center">
 
-                <TextView
-                    android:id="@+id/tvTitleLogin_login"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginTop="30dp"
-                    android:gravity="center"
-                    android:text="@string/tim_kiem_cung_cap_xe_tai"
-                    android:textColor="#000000"
-                    android:textSize="30sp"
-                    />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/ic_account"/>
 
-            </LinearLayout>
+                    <EditText
+                        android:id="@+id/etAccount_login"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textLongMessage"
+                        android:background="@drawable/abc_textfield_default_mtrl_alpha"
+                        android:hint="@string/ten_dang_nhap_hint"
+                        android:textSize="15sp"/>
+                </TableRow>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
+                <TableRow android:gravity="center">
 
-                <TableLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:stretchColumns="1">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/ic_password"/>
 
-                    <TableRow>
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="10dp"
-                            android:layout_marginRight="10dp"
-                            android:src="@drawable/ic_account"/>
-
-                        <EditText
-                            android:id="@+id/etAccount_login"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/ten_dang_nhap_hint"
-                            android:textSize="15sp"/>
-                    </TableRow>
-
-                    <TableRow>
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="10dp"
-                            android:layout_marginRight="10dp"
-                            android:src="@drawable/ic_password"/>
-
-                        <EditText
-                            android:id="@+id/etPassword_login"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/mat_khau_hint"
-                            android:inputType="textPassword"
-                            android:textSize="15sp"/>
-                    </TableRow>
-                </TableLayout>
-
-            </LinearLayout>
+                    <EditText
+                        android:id="@+id/etPassword_login"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/abc_textfield_default_mtrl_alpha"
+                        android:hint="@string/mat_khau_hint"
+                        android:inputType="textPassword"
+                        android:textSize="15sp"/>
+                </TableRow>
+            </TableLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -110,6 +102,7 @@
                     android:layout_marginTop="10dp"
                     android:background="@drawable/button_rectangle_backgroud"
                     android:text="@string/dang_nhap"
+                    fontPath="fonts/VL_Ample-Bold.otf"
                     android:textColor="#000000"
                     android:textSize="30sp"
                     />
@@ -133,8 +126,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
-                        android:textSize="15sp"
-                        android:text="@string/hoac"/>
+                        android:text="@string/hoac"
+                        android:textSize="15sp"/>
 
                     <ImageView
                         android:layout_width="0dp"
@@ -148,8 +141,8 @@
                     android:id="@+id/btnFacebook_login"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:layout_marginTop="10dp"
                     android:layout_marginBottom="70dp"
+                    android:layout_marginTop="10dp"
                     android:background="@drawable/button_circle_background"
                     android:src="@drawable/img_facebook"/>
 
@@ -167,7 +160,9 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="wrap_content"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
             android:layout_alignParentBottom="true"
             android:background="#000000"
             android:gravity="center"
@@ -178,6 +173,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/khong_co_tai_khoan"
+                fontPath="fonts/HelveticaNeue-Regular.otf"
                 android:textColor="#ffffff"
                 android:textSize="20sp"/>
 
@@ -191,6 +187,7 @@
                 android:textAllCaps="true"
                 android:textColor="#B4EC33"
                 android:textSize="20sp"
+                fontPath="fonts/MyriadPro-Regular.otf"
                 android:textStyle="bold"/>
         </LinearLayout>
 

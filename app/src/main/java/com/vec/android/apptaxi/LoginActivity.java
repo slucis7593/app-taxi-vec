@@ -7,7 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-public class LoginActivity extends SingleFragmentActivity {
+public class LoginActivity extends CalligraphyFragmentActivity {
 
     private static final String TAG = LoginActivity.class.getSimpleName();
 

@@ -20,4 +20,13 @@
     <string name="term">Terms of Service</string>
     <string name="policy">Privacy Policy</string>
     <string name="cancel">Hủy</string>
+    <string name="date_hint">Ngày</string>
+    <string name="month_hint">Tháng</string>
+    <string name="year_hint">Năm</string>
+    <string name="service_hint">Đăng ký dịch vụ</string>
+
+    <string-array name="service_register_array">
+        <item>Tài xế</item>
+    </string-array>
+
 </resources>
