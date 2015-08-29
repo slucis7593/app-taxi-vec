@@ -1,14 +1,25 @@
 package com.vec.android.apptaxi;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.Resources;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,24 +29,52 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by vuduc on 8/24/15.
  */
 public class RegisterFragment extends Fragment {
+    private static final String TAG = RegisterFragment.class.getSimpleName();
+    private static final int REQUEST_CAMERA = 0;
+    private static final int SELECT_FILE = 1;
+    String mCurrentPhotoPath;
     private Spinner mDateSpinner;
     private Spinner mMonthSpinner;
     private Spinner mYearSpinner;
+    private CircleImageView mImgAddAvatar;
+
+    private String mCurrentImagePath;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_register, container, false);
         Resources r = getResources();
+
+        // Circle Image View
+        mImgAddAvatar = (CircleImageView) v.findViewById(R.id.imgAddImage_register);
+        mImgAddAvatar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "Click Add Avatar");
+                selectImage();
+            }
+        });
 
         // Set focus
         LinearLayout mainLayout = (LinearLayout) v.findViewById(R.id.mainLayout_register);
@@ -128,6 +167,149 @@ public class RegisterFragment extends Fragment {
         tvTermPolicy.setText(coloredTermPolicyText);
 
         return v;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == REQUEST_CAMERA) {
+                handleImageFromCamera(data);
+            } else if (requestCode == SELECT_FILE) {
+                handleImageFromGallery(data);
+            }
+        }
+    }
+
+    private File createImageFile() throws IOException {
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
+
+        // Save a file: path for use with ACTION_VIEW intents
+        mCurrentPhotoPath = "file:" + image.getAbsolutePath();
+        return image;
+    }
+
+    private void handleImageFromCamera(Intent data) {
+        // Get image
+        Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+        assert thumbnail != null;
+        mImgAddAvatar.setImageBitmap(thumbnail);
+
+        // Compress Image to Byte array
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        thumbnail.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+
+        if (FileUtils.isExternalStorageWritable() && FileUtils.isExternalStorageReadable()) {
+            // Save image to external storage
+            String dir = Environment.getExternalStorageDirectory() + "/TaxiApp/Camera";
+            Log.d(TAG, "Path: " + dir);
+            File checkDir = new File(dir);
+
+            if (!checkDir.isDirectory() && !checkDir.exists()) {
+                if (!checkDir.mkdirs())
+                    return;
+            }
+
+            File destination = new File(Environment.getExternalStorageDirectory(),
+                    System.currentTimeMillis() + ".jpg");
+
+            FileOutputStream fo;
+            try {
+                if (destination.createNewFile()) {
+                    fo = new FileOutputStream(destination);
+                    fo.write(bytes.toByteArray());
+                    fo.close();
+
+
+                }
+            } catch (IOException e) {
+                Log.e(TAG, "Error write image to file: ", e);
+            }
+        } else {
+            FileOutputStream fo;
+            try {
+                String fileName = System.currentTimeMillis() + ".jpg";
+                fo = getActivity().openFileOutput(fileName, Context.MODE_PRIVATE);
+                fo.write(bytes.toByteArray());
+                fo.close();
+            } catch (IOException e) {
+                Log.e(TAG, "Error write image to file: ", e);
+            }
+        }
+    }
+
+    private void handleImageFromGallery(Intent data) {
+        Uri uri = data.getData();
+        String[] projection = {MediaStore.Images.Media.DATA};
+
+        Cursor cursor = getActivity().getContentResolver().query(uri, projection, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+
+            int columnIndex = cursor.getColumnIndex(projection[0]);
+            String picturePath = cursor.getString(columnIndex); // returns null
+            cursor.close();
+
+            Log.d(TAG, "picturePath: " + picturePath);
+            Picasso.with(getActivity()).load("file://" + picturePath).into(mImgAddAvatar);
+        } else {
+            Toast.makeText(getActivity(), "Could not load image", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void selectImage() {
+        final Resources r = getResources();
+
+        final CharSequence[] items = r.getTextArray(R.array.add_image_items_array);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+        builder.setTitle(r.getString(R.string.add_image_title));
+        builder.setItems(items, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int item) {
+                // Take picture by camera
+                if (item == 0) {
+
+                    File photoFile = null;
+                    try {
+                        photoFile = createImageFile();
+                    } catch (IOException ex) {
+                        // Error occurred while creating the File
+                        Log.e(TAG, "Error creat file: ", ex);
+                    }
+
+                    if (photoFile != null) {
+                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
+                            startActivityForResult(intent, REQUEST_CAMERA);
+                        }
+                    }
+                }
+                // Choose from Gallery
+                else if (item == 1) {
+                    Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                    intent.setType("image/*");
+                    startActivityForResult(
+                            Intent.createChooser(intent, r.getString(R.string.choose_file)),
+                            SELECT_FILE);
+                }
+                // Cancel
+                else if (item == 2) {
+                    dialog.dismiss();
+                }
+            }
+        });
+        builder.show();
     }
 
     class ServiceRegisterAdapter extends ArrayAdapter<String> {

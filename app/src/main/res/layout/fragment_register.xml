@@ -3,6 +3,7 @@
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:background="#B4EC33"
               android:orientation="vertical">
 
@@ -66,13 +67,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp">
 
-                    <ImageButton
-                        android:id="@+id/btnAddImage_register"
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/imgAddImage_register"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
                         android:layout_centerInParent="true"
-                        android:background="@drawable/button_circle_background"
-                        android:src="@drawable/ic_add_image"/>
+                        android:gravity="center"
+                        android:background="@drawable/button_add_background"
+                        app:border_width="2dp"
+                        app:border_color="#FF000000" />
 
                     <TextView
                         android:layout_width="wrap_content"
