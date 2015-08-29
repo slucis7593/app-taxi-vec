@@ -137,6 +137,12 @@
 
                 </LinearLayout>
 
+                <com.facebook.login.widget.LoginButton
+                    android:id="@+id/btnFacebookLogin_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"/>
+
                 <ImageButton
                     android:id="@+id/btnFacebook_login"
                     android:layout_width="100dp"
@@ -147,7 +153,6 @@
                     android:src="@drawable/img_facebook"/>
 
             </LinearLayout>
-
 
         </LinearLayout>
 
