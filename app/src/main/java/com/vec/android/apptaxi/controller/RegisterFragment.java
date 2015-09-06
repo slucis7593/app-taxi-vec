@@ -1,4 +1,4 @@
-package com.vec.android.apptaxi;
+package com.vec.android.apptaxi.controller;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -32,6 +31,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
+import com.vec.android.apptaxi.R;
+import com.vec.android.apptaxi.utils.DateUtils;
+import com.vec.android.apptaxi.utils.FileUtils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;

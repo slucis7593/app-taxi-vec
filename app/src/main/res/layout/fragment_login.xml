@@ -65,7 +65,8 @@
                         android:inputType="textLongMessage"
                         android:background="@drawable/abc_textfield_default_mtrl_alpha"
                         android:hint="@string/ten_dang_nhap_hint"
-                        android:textSize="15sp"/>
+                        android:textSize="15sp"
+                        android:text="vuduc@gmail.com"/>
                 </TableRow>
 
                 <TableRow android:gravity="center">
@@ -84,7 +85,8 @@
                         android:background="@drawable/abc_textfield_default_mtrl_alpha"
                         android:hint="@string/mat_khau_hint"
                         android:inputType="textPassword"
-                        android:textSize="15sp"/>
+                        android:textSize="15sp"
+                        android:text="12345678"/>
                 </TableRow>
             </TableLayout>
 

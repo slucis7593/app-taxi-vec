@@ -1,8 +1,10 @@
-package com.vec.android.apptaxi;
+package com.vec.android.apptaxi.controller;
 
 import android.app.Application;
 
 import com.facebook.FacebookSdk;
+import com.vec.android.apptaxi.R;
+import com.vec.android.apptaxi.utils.FontUtils;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 

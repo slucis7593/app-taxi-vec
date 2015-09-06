@@ -1,4 +1,4 @@
-package com.vec.android.apptaxi;
+package com.vec.android.apptaxi.utils;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.vec.android.apptaxi.R;
 
 import java.util.ArrayList;
 import java.util.Calendar;

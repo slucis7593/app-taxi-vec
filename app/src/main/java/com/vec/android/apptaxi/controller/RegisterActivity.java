@@ -1,4 +1,4 @@
-package com.vec.android.apptaxi;
+package com.vec.android.apptaxi.controller;
 
 import android.support.v4.app.Fragment;
 

@@ -1,4 +1,4 @@
-package com.vec.android.apptaxi;
+package com.vec.android.apptaxi.controller;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,9 +10,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;
@@ -23,6 +26,13 @@ import com.facebook.Profile;
 import com.facebook.ProfileTracker;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.vec.android.apptaxi.R;
+import com.vec.android.apptaxi.api.TaxiAppService;
+import com.vec.android.apptaxi.api.TaxiAppServiceManager;
+import com.vec.android.apptaxi.model.ResponseData;
+
+import retrofit.Callback;
+import retrofit.Response;
 
 /**
  * Created by vuduc on 8/21/15.
@@ -58,7 +68,41 @@ public class LoginFragment extends Fragment {
             Log.e(TAG, "Facebook error: ", e);
         }
     };
+    private LoginButton mBtnFacebookLogin;
+    private EditText mETPassword;
+    private EditText mETAccount;
 
+    private void requestLogin() {
+        String acc = mETAccount.getText().toString();
+        String pwd = mETPassword.getText().toString();
+
+        TaxiAppService service = TaxiAppServiceManager.get(getActivity()).getService();
+
+        service.login(acc, pwd, TaxiAppServiceManager.PARAM_MACHINE_CODE, TaxiAppServiceManager.PARAM_OS_TYPE).enqueue(new Callback<ResponseData>() {
+            @Override
+            public void onResponse(Response<ResponseData> response) {
+                ResponseData responseData = response.body();
+                if (responseData != null) {
+                    Log.d(TAG, "Success Login");
+                    boolean isSuccess = responseData.getSuccess();
+                    if (isSuccess) {
+                        Intent i = new Intent(getActivity(), InAppActivity.class);
+                        startActivity(i);
+                    } else {
+                        Toast.makeText(getActivity(), responseData.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                } else {
+                    Toast.makeText(getActivity(), response.message(), Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                Log.d(TAG, "Failed: " + t.getMessage());
+                Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+    }
 
     private String displayMessage(Profile profile) {
         String message = "";
@@ -99,6 +143,7 @@ public class LoginFragment extends Fragment {
 
         mTokenTracker.startTracking();
         mProfileTracker.startTracking();
+
         Log.d(TAG, "onCreate: Start Tracking");
     }
 
@@ -129,18 +174,30 @@ public class LoginFragment extends Fragment {
             }
         });
 
-        final LoginButton loginButton = (LoginButton) v.findViewById(R.id.btnFacebookLogin_login);
-        loginButton.setReadPermissions("user_friends", "email");
-        loginButton.setFragment(this);
-        loginButton.registerCallback(mCallbackManager, mFacebookCallback);
+        mBtnFacebookLogin = (LoginButton) v.findViewById(R.id.btnFacebookLogin_login);
+        mBtnFacebookLogin.setReadPermissions("user_friends", "email");
+        mBtnFacebookLogin.setFragment(this);
+        mBtnFacebookLogin.registerCallback(mCallbackManager, mFacebookCallback);
 
-        ImageButton loginImageButton = (ImageButton) v.findViewById(R.id.btnFacebook_login);
-        loginImageButton.setOnClickListener(new View.OnClickListener() {
+        ImageButton IBtnLogin = (ImageButton) v.findViewById(R.id.btnFacebook_login);
+        IBtnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loginButton.performClick();
+                mBtnFacebookLogin.performClick();
             }
         });
+
+        Button btnSignIn = (Button) v.findViewById(R.id.btnSignIn_login);
+        btnSignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                requestLogin();
+            }
+        });
+
+        mETAccount = (EditText) v.findViewById(R.id.etAccount_login);
+
+        mETPassword = (EditText) v.findViewById(R.id.etPassword_login);
 
         return v;
     }

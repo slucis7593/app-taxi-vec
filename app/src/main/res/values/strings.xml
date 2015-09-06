@@ -37,5 +37,7 @@
         <item>Chọn từ thư viện</item>
         <item>Hủy</item>
     </string-array>
+    <string name="title_activity_in_app">InApp</string>
+    <string name="get_my_location">Get My Location</string>
 
 </resources>

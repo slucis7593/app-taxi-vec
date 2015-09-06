@@ -1,4 +1,4 @@
-package com.vec.android.apptaxi;
+package com.vec.android.apptaxi.utils;
 
 import android.content.Context;
 import android.graphics.Typeface;
