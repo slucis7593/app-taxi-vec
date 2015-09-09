@@ -21,10 +21,10 @@
 
     <item>
         <layer-list>
-            <item android:drawable="@drawable/button_normal_shape" />
             <item>
                 <bitmap android:src="@drawable/ic_add_image_patch" android:gravity="center" />
             </item>
+            <item android:drawable="@drawable/button_normal_shape" />
         </layer-list>
     </item>
 </selector>

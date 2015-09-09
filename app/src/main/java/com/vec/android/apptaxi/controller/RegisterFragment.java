@@ -73,7 +73,6 @@ public class RegisterFragment extends Fragment {
         mImgAddAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "Click Add Avatar");
                 selectImage();
             }
         });
@@ -251,21 +250,23 @@ public class RegisterFragment extends Fragment {
 
     private void handleImageFromGallery(Intent data) {
         Uri uri = data.getData();
-        String[] projection = {MediaStore.Images.Media.DATA};
+        String picturePath;
 
+        String[] projection = { MediaStore.Images.Media.DATA };
         Cursor cursor = getActivity().getContentResolver().query(uri, projection, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
 
             int columnIndex = cursor.getColumnIndex(projection[0]);
-            String picturePath = cursor.getString(columnIndex); // returns null
+            picturePath = cursor.getString(columnIndex); // returns null
             cursor.close();
-
-            Log.d(TAG, "picturePath: " + picturePath);
-            Picasso.with(getActivity()).load("file://" + picturePath).into(mImgAddAvatar);
         } else {
-            Toast.makeText(getActivity(), "Could not load image", Toast.LENGTH_SHORT).show();
+            picturePath = uri.getPath();
         }
+
+        Picasso.with(getActivity()).load("file://" + picturePath)
+                .error(android.R.drawable.ic_delete)
+                .into(mImgAddAvatar);
     }
 
     private void selectImage() {

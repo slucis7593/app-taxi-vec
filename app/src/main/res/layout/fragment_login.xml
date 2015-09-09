@@ -26,6 +26,11 @@
             android:gravity="center"
             android:orientation="vertical">
 
+            <ImageView
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img_truck"/>
+
             <TextView
                 android:id="@+id/tvTitleLogin_login"
                 android:layout_width="wrap_content"
@@ -33,8 +38,6 @@
                 fontPath="fonts/VL_Ample-Bold.otf"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
-                android:drawablePadding="18dp"
-                android:drawableTop="@drawable/img_truck"
                 android:gravity="center"
                 android:text="@string/tim_kiem_cung_cap_xe_tai"
                 android:textColor="#000000"
@@ -147,8 +150,8 @@
 
                 <ImageButton
                     android:id="@+id/btnFacebook_login"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
                     android:layout_marginBottom="70dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/button_circle_background"
