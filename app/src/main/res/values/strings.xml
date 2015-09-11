@@ -27,6 +27,15 @@
     <string name="facebook_app_id">1622712958000610</string>
     <string name="add_image_title">Thêm ảnh</string>
     <string name="choose_file">Chọn ảnh</string>
+    <string name="title_activity_in_app">InApp</string>
+    <string name="get_my_location">Get My Location</string>
+    <string name="anh_chan_dung">Ảnh\nchân dung</string>
+    <string name="khai_bao_ngay_sinh">Hãy khai báo ngày sinh</string>
+    <string name="ngay_thang_nam">Ngày/Tháng/Năm</string>
+    <string name="number_one">1</string>
+    <string name="number_two">2</string>
+    <string name="number_three">3</string>
+    <string name="tiep_theo">Tiếp theo</string>
 
     <string-array name="service_register_array">
         <item>Tài xế</item>
@@ -37,8 +46,4 @@
         <item>Chọn từ thư viện</item>
         <item>Hủy</item>
     </string-array>
-    <string name="title_activity_in_app">InApp</string>
-    <string name="get_my_location">Get My Location</string>
-    <string name="anh_chan_dung">Ảnh\nchân dung</string>
-
 </resources>

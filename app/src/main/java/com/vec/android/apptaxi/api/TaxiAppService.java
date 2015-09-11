@@ -1,6 +1,7 @@
 package com.vec.android.apptaxi.api;
 
 import com.vec.android.apptaxi.model.ResponseData;
+import com.vec.android.apptaxi.model.ResponseDataString;
 
 import retrofit.Call;
 import retrofit.http.Field;
@@ -17,4 +18,8 @@ public interface TaxiAppService {
                                     @Field("password") String password,
                                     @Field("machine_code") String machineCode,
                                     @Field("os_type") String osType);
+
+    @FormUrlEncoded
+    @POST("/TaxiAccount.asmx/UploadImage")
+    public Call<ResponseDataString> uploadImage(@Field("content")String content);
 }

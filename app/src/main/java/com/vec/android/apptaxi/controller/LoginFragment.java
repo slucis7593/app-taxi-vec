@@ -51,11 +51,11 @@ public class LoginFragment extends Fragment {
 
             Profile profile = Profile.getCurrentProfile();
 
-            Log.d(TAG, "onSuccess: " + displayMessage(profile) +
+            /*Log.d(TAG, "onSuccess: " + displayMessage(profile) +
                     "\nUser Id: " + accessToken.getUserId() +
                     "\nApp Id: " + accessToken.getApplicationId() +
                     "\nToken: " + accessToken.getToken() +
-                    "\nPermissions: " + accessToken.getPermissions());
+                    "\nPermissions: " + accessToken.getPermissions());*/
         }
 
         @Override
@@ -143,8 +143,6 @@ public class LoginFragment extends Fragment {
 
         mTokenTracker.startTracking();
         mProfileTracker.startTracking();
-
-        Log.d(TAG, "onCreate: Start Tracking");
     }
 
     @Nullable
@@ -167,8 +165,6 @@ public class LoginFragment extends Fragment {
         tvSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "Sign Up Text View Clicked");
-
                 Intent i = new Intent(getActivity(), RegisterActivity.class);
                 startActivity(i);
             }
@@ -209,23 +205,9 @@ public class LoginFragment extends Fragment {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        Profile profile = Profile.getCurrentProfile();
-        Log.d(TAG, "onResume: " + displayMessage(profile));
-    }
-
-    @Override
     public void onStop() {
         super.onStop();
-        Log.d(TAG, "onStop");
         mProfileTracker.stopTracking();
         mTokenTracker.stopTracking();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Log.d(TAG, "onDestroy");
     }
 }
