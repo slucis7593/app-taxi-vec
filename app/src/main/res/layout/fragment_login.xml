@@ -9,7 +9,7 @@
     android:fillViewport="true">
 
     <RelativeLayout
-        android:id="@+id/mainLayout_login"
+        android:id="@+id/login_layout_main"
         android:clickable="true"
         android:focusable="true"
         android:focusableInTouchMode="true"
@@ -32,7 +32,7 @@
                 android:src="@drawable/img_truck"/>
 
             <TextView
-                android:id="@+id/tvTitleLogin_login"
+                android:id="@+id/login_tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 fontPath="fonts/VL_Ample-Bold.otf"
@@ -62,7 +62,7 @@
                         android:src="@drawable/ic_account"/>
 
                     <EditText
-                        android:id="@+id/etAccount_login"
+                        android:id="@+id/login_et_account"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textLongMessage"
@@ -82,7 +82,7 @@
                         android:src="@drawable/ic_password"/>
 
                     <EditText
-                        android:id="@+id/etPassword_login"
+                        android:id="@+id/login_et_password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/abc_textfield_default_mtrl_alpha"
@@ -101,7 +101,7 @@
                 android:orientation="vertical">
 
                 <Button
-                    android:id="@+id/btnSignIn_login"
+                    android:id="@+id/login_btn_sign_in"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -126,7 +126,7 @@
                         android:background="@drawable/line"/>
 
                     <TextView
-                        android:id="@+id/tvOr_login"
+                        android:id="@+id/login_tv_or"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
@@ -143,13 +143,13 @@
                 </LinearLayout>
 
                 <com.facebook.login.widget.LoginButton
-                    android:id="@+id/btnFacebookLogin_login"
+                    android:id="@+id/login_btn_facebook_login"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:visibility="gone"/>
 
                 <ImageButton
-                    android:id="@+id/btnFacebook_login"
+                    android:id="@+id/login_btn_facebook"
                     android:layout_width="90dp"
                     android:layout_height="90dp"
                     android:layout_marginBottom="70dp"
@@ -179,7 +179,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tvNoAccount_login"
+                android:id="@+id/login_tv_no_account"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/khong_co_tai_khoan"
@@ -188,7 +188,7 @@
                 android:textSize="20sp"/>
 
             <TextView
-                android:id="@+id/tvSignUp_login"
+                android:id="@+id/login_tv_sign_up"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="6dp"

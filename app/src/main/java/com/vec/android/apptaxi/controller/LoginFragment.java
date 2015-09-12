@@ -150,7 +150,7 @@ public class LoginFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_login, container, false);
 
-        RelativeLayout mainLayout = (RelativeLayout) v.findViewById(R.id.mainLayout_login);
+        RelativeLayout mainLayout = (RelativeLayout) v.findViewById(R.id.login_layout_main);
         mainLayout.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -161,7 +161,7 @@ public class LoginFragment extends Fragment {
             }
         });
 
-        TextView tvSignUp = (TextView) v.findViewById(R.id.tvSignUp_login);
+        TextView tvSignUp = (TextView) v.findViewById(R.id.login_tv_sign_up);
         tvSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -170,12 +170,12 @@ public class LoginFragment extends Fragment {
             }
         });
 
-        mBtnFacebookLogin = (LoginButton) v.findViewById(R.id.btnFacebookLogin_login);
+        mBtnFacebookLogin = (LoginButton) v.findViewById(R.id.login_btn_facebook_login);
         mBtnFacebookLogin.setReadPermissions("user_friends", "email");
         mBtnFacebookLogin.setFragment(this);
         mBtnFacebookLogin.registerCallback(mCallbackManager, mFacebookCallback);
 
-        ImageButton IBtnLogin = (ImageButton) v.findViewById(R.id.btnFacebook_login);
+        ImageButton IBtnLogin = (ImageButton) v.findViewById(R.id.login_btn_facebook);
         IBtnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -183,7 +183,7 @@ public class LoginFragment extends Fragment {
             }
         });
 
-        Button btnSignIn = (Button) v.findViewById(R.id.btnSignIn_login);
+        Button btnSignIn = (Button) v.findViewById(R.id.login_btn_sign_in);
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -191,9 +191,9 @@ public class LoginFragment extends Fragment {
             }
         });
 
-        mETAccount = (EditText) v.findViewById(R.id.etAccount_login);
+        mETAccount = (EditText) v.findViewById(R.id.login_et_account);
 
-        mETPassword = (EditText) v.findViewById(R.id.etPassword_login);
+        mETPassword = (EditText) v.findViewById(R.id.login_et_password);
 
         return v;
     }

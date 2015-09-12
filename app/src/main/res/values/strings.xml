@@ -36,6 +36,7 @@
     <string name="number_two">2</string>
     <string name="number_three">3</string>
     <string name="tiep_theo">Tiếp theo</string>
+    <string name="date_picker_title">Chọn ngày</string>
 
     <string-array name="service_register_array">
         <item>Tài xế</item>

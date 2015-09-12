@@ -12,8 +12,13 @@ import android.widget.TextView;
 
 import com.vec.android.apptaxi.R;
 
+import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by vuduc on 8/26/15.
@@ -133,5 +138,37 @@ public class DateUtils {
         public String getItem(int position) {
             return super.getItem(position);
         }
+    }
+
+    public static String date2StringForDisplay(Date date) {
+        return date2String(date, "dd/MM/yyyy");
+    }
+
+    public static String date2StringForUpload(Date date) {
+        return date2String(date, "yyyy-MM-dd");
+    }
+
+    public static String date2String(Date date, String formatString) {
+        SimpleDateFormat formatter = new SimpleDateFormat(formatString, Locale.US);
+        return formatter.format(date);
+    }
+
+    public static Date stringApi2Date(String source) {
+        return string2Date(source, "yyyy-MM-dd");
+    }
+
+    public static Date stringUi2Date(String source) {
+        return string2Date(source, "dd/MM/yyyy");
+    }
+
+    public static Date string2Date(String source, String formatString) {
+        SimpleDateFormat formatter = new SimpleDateFormat(formatString);
+        Date date = null;
+        try {
+            date = formatter.parse(source);
+        } catch (NullPointerException | ParseException e) {
+            date = new Date();
+        }
+        return date;
     }
 }

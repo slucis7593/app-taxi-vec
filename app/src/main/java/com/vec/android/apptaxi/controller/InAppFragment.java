@@ -1,10 +1,8 @@
 package com.vec.android.apptaxi.controller;
 
-import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +12,7 @@ import android.widget.Button;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.vec.android.apptaxi.R;
@@ -77,7 +76,7 @@ public class InAppFragment extends Fragment {
         if (mMap == null) {
             // Try to obtain the map from the SupportMapFragment.
             // This is nested fragment, so you must use getChildFragmentManager instead of getActivity().getSupportFragmentManager()
-            SupportMapFragment smf = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
+            SupportMapFragment smf = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.in_app_map);
 
             if (smf != null) {
                 mMap = smf.getMap();
@@ -98,9 +97,12 @@ public class InAppFragment extends Fragment {
      * This should only be called once and when we are sure that {@link #mMap} is not null.
      */
     private void setUpMap() {
-        LatLng VuTrungDucHouse = new LatLng(22.397426, 103.453627);
+        LatLng VuTrungDucHouse = new LatLng(20.995625, 105.819559);
 
-        mMap.addMarker(new MarkerOptions().position(VuTrungDucHouse).title("Nhà của Vũ Trung Đức"));
+        mMap.addMarker(new MarkerOptions()
+                        .position(VuTrungDucHouse)
+                        .title("VEC Team")
+                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_account)));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(VuTrungDucHouse));
         mMap.moveCamera(CameraUpdateFactory.zoomTo(15));
         mMap.setMyLocationEnabled(true);
